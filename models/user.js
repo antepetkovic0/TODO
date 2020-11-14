@@ -1,5 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define("User", {
+        //todo - better regex
         firstname: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -50,7 +51,18 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 isEmail: true
             }
-        },       
+        },   
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                is: {
+                    //one lowercase, uppercase, digit, special character and min length 8
+                    args: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                    msg: "Password must contain atleast one uppercase and lower case, digit and special character."
+                }
+            }
+        }    
     }, {});
     return User;
 }
