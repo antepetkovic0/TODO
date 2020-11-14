@@ -3,8 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const db = require("./models");
 const app = express();
-const todoRoutes = require("./controllers/todo");
-const userRoutes = require("./controllers/user");
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 3000;
 
@@ -14,8 +13,8 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use("/todos", todoRoutes);
-app.use("/users", userRoutes);
+//use routes
+app.use('/api', routes);
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {

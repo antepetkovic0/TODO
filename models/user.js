@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             validate: {
                 is: {
-                    args: /[a-z]/gi,
+                    args: /^[a-z]+$/gi,
                     msg: "Last name should contain only letters."
                 },
                 len: {
@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             validate: {
                 is: {
-                    args: /[\w]/gi,
+                    args: /^[\w]+$/gi,
                     msg: "Username should contain any letter, digit or underscore."
                 },
                 len: {
