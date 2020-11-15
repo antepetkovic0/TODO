@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-export const createToken = (id, username) => {
+const createToken = (id, username) => {
     const payload = {
         id,
         username
@@ -14,7 +14,9 @@ export const createToken = (id, username) => {
     return token;
 }
 
-export const verifyToken = (token) => {
+const verifyToken = (token) => {
     const decoded = jwt.verify(token, 'secret-password');
     return decoded;
 }
+
+module.exports = { createToken, verifyToken };

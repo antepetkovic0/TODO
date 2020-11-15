@@ -1,6 +1,6 @@
 const db = require('../models');
 const User = db.User;
-import { verifyToken } from '../utils/jwt';
+// import { verifyToken } from '../utils/jwt';
 
 export const authenticateUser = async (req, res, next) => {
     //Authorization: Bearer <acces_token>
