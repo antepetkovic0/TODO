@@ -49,7 +49,9 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             allowNull: false,
             validate: {
-                isEmail: true
+                isEmail: {
+                    msg: "Email must be valid."
+                }
             }
         },   
         password: {
@@ -58,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 is: {
                     //one lowercase, uppercase, digit, special character and min length 8
-                    args: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
+                    args: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/g,
                     msg: "Password must contain atleast one uppercase and lower case, digit and special character."
                 }
             }

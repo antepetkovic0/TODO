@@ -1,34 +1,15 @@
-const express = require("express");
-const router = express.Router();
-const db = require("../models");
-const bcrypt = require("bcrypt");
+const userService = require('../services/user');
 
-const User = db.User;
-
-router.get("/all", async (req, res) => {
-    const users = await User.findAll();
-    res.send(users);
-})
-
-router.post("/test", async (req, res) => {
-    const { firstname, lastname, username, email } = req.body;
-
-    const newUser = {
-        firstname,
-        lastname,
-        username,
-        email
-    };
-
+const registerUser = async (req, res) => {
     try {
-        const re = await User.create(newUser);
-        res.send(re);
+        const { firstname, lastname, username, email, password } = req.body;
+        const user = await userService.registerUser(firstname, lastname, username, email, password);
+        return res.json({ status: 200, data: user });
     } catch (e) {
-        res.send(e);
+        return res.json({ status: 400, message: e.message });
     }
+}
 
-});
-
-module.exports = router;
+module.exports = { registerUser };
 
 
