@@ -1,6 +1,6 @@
 const db = require('../models');
 const hash = require('../utils/hash');
-const jwt = require('../utils/jwt');
+const jwt = require('jsonwebtoken');
 
 const User = db.User;
 
@@ -30,7 +30,11 @@ const loginUser = async (username, password) => {
             throw Error('Username or password is incorrect.');
         }
 
-        const token = jwt.createToken(user.id, username);
+        const payload = { 
+            id: user.id, 
+            username 
+        };    
+        const token = jwt.sign(payload, 'secret-password', { expiresIn: '1h'});
         const { email } = user;
         return { token, user: { username, email } };
     } catch (e) {
