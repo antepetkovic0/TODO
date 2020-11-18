@@ -21,7 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       password: {
           type: DataTypes.STRING,
           allowNull: false
-      }    
+      },
+      total: {
+        type: DataTypes.INTEGER
+      } 
   }, {});
 
   User.associate = (models) => {
