@@ -2,9 +2,9 @@ const db = require('../models');
 
 const Todo = db.Todo;
 
-const getAllTodos = async () => {
+const getAllTodos = async (userId) => {
     try {
-        const todos = await Todo.findAll();
+        const todos = await Todo.findAll({ where: { userId }});
         return todos;
     } catch (e) {
         throw Error('Error while getting all todos.');
@@ -13,23 +13,20 @@ const getAllTodos = async () => {
 
 const getTodo = async (id) => {
     try {
-        const todo = await Todo.findAll({
-            where: {
-                id: id
-            }
-        });
+        const todo = await Todo.findAll({ where: { id }});
         return todo;
     } catch (e) {
         throw Error('Error while getting single todo.');
     }
 };
 
-const addTodo = async (title, completed, description) => {
+const addTodo = async (title, completed, description, userId) => {
     try {
         const newTodo = {
             title,
             completed,
-            description
+            description,
+            userId
         };
         const todo = await Todo.create(newTodo);
         return todo;
@@ -45,9 +42,7 @@ const editTodo = async (id, title, completed, description) => {
             completed,
             description
         };
-        await Todo.update(updatedTodo, {
-            where: { id: id }
-        });
+        await Todo.update(updatedTodo, {  where: { id }});
         return 'Todo updated successfully.';
     } catch (e) {
         throw Error('Error while updating todo.');
@@ -56,9 +51,7 @@ const editTodo = async (id, title, completed, description) => {
 
 const deleteTodo = async (id) => {
     try {
-        await Todo.destroy({ 
-            where: { id: id }
-        });
+        await Todo.destroy({ where: { id }});
         return 'Todo deleted successfully.';
     } catch (e) {
         throw Error('Error while deleting todo.');

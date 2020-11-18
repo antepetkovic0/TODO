@@ -1,5 +1,4 @@
 const userService = require('../services/user');
-const todoService = require('../services/todo');
 
 const registerUser = async (req, res) => {
     try {
@@ -21,16 +20,6 @@ const loginUser = async (req, res) => {
     }
 }
 
-//just testing middleware
-const getTodos = async (req, res) => {
-    try {
-        const todos = await todoService.getAllTodos();
-        return res.status(200).json({status: 200, data: todos});
-    } catch (e) {
-        return res.status(400).json({status: 400, message: e.message})
-    }
-};
-
-module.exports = { registerUser, loginUser, getTodos };
+module.exports = { registerUser, loginUser };
 
 
