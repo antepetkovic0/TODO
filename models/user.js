@@ -1,6 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
     const User = sequelize.define("User", {
-        //todo - better regex
         firstname: {
             type: DataTypes.STRING,
             allowNull: false

@@ -18,7 +18,7 @@ app.use('/api', routes);
 
 db.sequelize.sync().then(() => {
     app.listen(PORT, () => {
-        console.log(`Server listening on port  ${PORT}`);
+        console.log(`Server listening on port ${PORT}`);
     })
 });
 
