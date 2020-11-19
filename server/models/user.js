@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.STRING,
           allowNull: false
       },
-      total: {
-        type: DataTypes.INTEGER
-      } 
+      // total: {
+      //   type: DataTypes.INTEGER
+      // } 
   }, {});
 
   User.associate = (models) => {
