@@ -1,3 +1,4 @@
+import React, {useState, useEffect} from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import * as S from './components/styled/App.styled';
 import Home from './components/Home/Home';
@@ -8,7 +9,8 @@ function App() {
   return (
     <Router>
       <S.App>
-        <Switch>
+        <Home />
+        {/* <Switch>
           <Route exact path="/">
             <Home />
           </Route>
@@ -18,7 +20,7 @@ function App() {
           <Route path="*">
             <NoMatch />
           </Route>
-        </Switch>
+        </Switch> */}
       </S.App>
     </Router>
   );

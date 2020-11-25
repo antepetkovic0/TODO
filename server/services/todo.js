@@ -2,9 +2,17 @@ const db = require('../models');
 
 const Todo = db.Todo;
 
-const getAllTodos = async (userId) => {
+// const getAllTodos = async (userId) => {
+//     try {
+//         const todos = await Todo.findAll({ where: { userId }});
+//         return todos;
+//     } catch (e) {
+//         throw Error('Error while getting all todos.');
+//     }
+// };
+const getAllTodos = async () => {
     try {
-        const todos = await Todo.findAll({ where: { userId }});
+        const todos = await Todo.findAll();
         return todos;
     } catch (e) {
         throw Error('Error while getting all todos.');
@@ -20,13 +28,12 @@ const getTodo = async (id) => {
     }
 };
 
-const addTodo = async (title, completed, description, userId) => {
+const addTodo = async (title, completed, description) => {
     try {
         const newTodo = {
             title,
             completed,
             description,
-            userId
         };
         const todo = await Todo.create(newTodo);
         return todo;

@@ -21,18 +21,15 @@ module.exports = (sequelize, DataTypes) => {
       password: {
           type: DataTypes.STRING,
           allowNull: false
-      },
-      // total: {
-      //   type: DataTypes.INTEGER
-      // } 
+      }, 
   }, {});
 
-  User.associate = (models) => {
-    User.hasMany(models.Todo, {
-      as: 'todos',
-      foreignKey: 'userId'
-    });
-  };
+  // User.associate = (models) => {
+  //   User.hasMany(models.Todo, {
+  //     as: 'todos',
+  //     foreignKey: 'userId'
+  //   });
+  // };
 
   return User;
 }

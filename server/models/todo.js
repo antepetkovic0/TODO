@@ -12,18 +12,18 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: true,
           type: DataTypes.STRING
       },
-      userId: {
-        allowNull: false,
-        type: DataTypes.INTEGER
-      }       
+      // userId: {
+      //   allowNull: false,
+      //   type: DataTypes.INTEGER
+      // }       
   }, {});
 
-  Todo.associate = (models) => {
-      Todo.belongsTo(models.User, {
-        as: 'user',
-        foreignKey: 'userId'
-      });
-  };
+  // Todo.associate = (models) => {
+  //     Todo.belongsTo(models.User, {
+  //       as: 'user',
+  //       foreignKey: 'userId'
+  //     });
+  // };
 
   return Todo;
 };

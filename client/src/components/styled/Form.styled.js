@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
-    width: 40%;
-    margin-left: 60%;
+    width: 30%;
+    /* margin-left: 60%; */
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 `;
 
 const FormTitle = styled.h2`
@@ -10,4 +15,9 @@ const FormTitle = styled.h2`
     text-align: center;
 `;
 
-export { Form, FormTitle };
+const FormTextarea = styled.textarea`
+    width: 100%;
+    resize: none;
+`;
+
+export { Form, FormTitle, FormTextarea };
