@@ -1,24 +1,26 @@
-import { RECEIVE_DATA, receiveData } from '../actions/todos';
+import { RECEIVE_DATA, ADD_TODO, TOGGLE_TODO, DELETE_TODO } from '../actions/todos';
 
 const INITIAL_STATE = {
-    todos: [],
-    users: []
+    todos: []
 };
 
 export const todosReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case RECEIVE_DATA:
-            return {...state, todos: [...state.todos, action.payload]}; //copy other props from state, spread todos with new coming
+            return {...state, todos: [...state.todos, ...action.payload]}; //copy other props from state, spread todos with new coming
+        case ADD_TODO:
+            return {...state, todos: [...state.todos, action.payload]};
+        case TOGGLE_TODO:
+            return {...state, todos: state.todos.map((todo) => todo.id !== action.payload ? 
+                todo : 
+                {...todo, completed: !todo.completed}
+                )};
+        case DELETE_TODO:
+            return {...state, todos: state.todos.filter(todo => todo.id !== action.payload)};
         default: 
             return state;
     }
 }
-
-export const fetchTodos = () => async (dispatch, getState) => {
-    const response = await fetch('http://localhost:5000/api/todos');
-    const res = await response.json();
-    dispatch(receiveData(res.data));
-  } 
 
 export default todosReducer;
 

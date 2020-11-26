@@ -50,6 +50,17 @@ const editTodo = async (req, res) => {
     }
 };
 
+const toggleTodo = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { completed } = req.body;
+        const result = await todoService.toggleTodo(id, completed);
+        return res.status(200).json({status: 200, message: result});
+    } catch (e) {
+        return res.status(400).json({status: 400, message: e.message})
+    }
+};
+
 const deleteTodo = async (req, res) => {
     try {
         const id = req.params.id;
@@ -60,4 +71,4 @@ const deleteTodo = async (req, res) => {
     }
 };
 
-module.exports = { getAllTodos, getTodo, addTodo, editTodo, deleteTodo };
+module.exports = { getAllTodos, getTodo, addTodo, editTodo, toggleTodo, deleteTodo };

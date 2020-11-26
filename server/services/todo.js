@@ -56,6 +56,16 @@ const editTodo = async (id, title, completed, description) => {
     }
 };
 
+//so we can change completed in both directions
+const toggleTodo = async (id, completed) => {
+    try {
+        await Todo.update({ completed: !completed }, {  where: { id }});
+        return 'Todo progress status updated successfully.';
+    } catch (e) {
+        throw Error('Error while updating todo.');
+    }
+};
+
 const deleteTodo = async (id) => {
     try {
         await Todo.destroy({ where: { id }});
@@ -65,4 +75,4 @@ const deleteTodo = async (id) => {
     }
 };
 
-module.exports = { getAllTodos, getTodo, addTodo, editTodo, deleteTodo };
+module.exports = { getAllTodos, getTodo, addTodo, editTodo, toggleTodo, deleteTodo };
