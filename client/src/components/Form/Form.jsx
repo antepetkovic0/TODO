@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as S from '../styled/Form.styled';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addItem } from '../../API';
 
 const Form = () => {
@@ -26,19 +26,26 @@ const Form = () => {
 
     return (
         <S.Form onSubmit={handleSubmit}>
-            <input
+            <S.FormTitle>Lets get hands dirty</S.FormTitle>
+            <S.TextInput
                 type="text"
+                placeholder="Enter todo title"
+                id="title"
                 value={title}
                 onChange={handleTitleChange}
                 required
             />
-            <S.FormTextarea 
-                cols="4" 
+            <S.Label htmlFor="title">Title</S.Label>
+            <S.TextInput 
+                type="text"
+                placeholder="Enter short todo description"
+                id="description" 
                 value={description}
                 onChange={handleDescriptionChange}
                 required
             />
-            <button type="submit">lalal</button>
+            <S.Label htmlFor="description">Description</S.Label>
+            <S.SubmitButton type="submit">Add todo</S.SubmitButton>
         </S.Form>
     )
 }
